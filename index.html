@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .calculator {
+            background: #011128;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .box {
+            max-width: 420px;
+            padding: 20px;
+            background: black;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            border: 3px solid #020700;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .output {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #032a2a;
+            background: transparent;
+            color: white;
+            margin-bottom: 20px;
+            font-size: 24px;
+            text-align: right;
+            box-sizing: border-box;
+        }
+
+        .btn-glry {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: space-between;
+        }
+
+        .btn {
+            width: calc(25% - 7.5px);
+            border: 2px solid black;
+            background: transparent;
+            text-align: center;
+            color: #33ccff !important;
+            height: 53px;
+            font-size: 20px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-2 {
+            width: calc(50% - 7.5px);
+            background: linear-gradient(to bottom, #00ff99 0%, #66ccff 100%);
+        }
+
+        .btn-d {
+            color: white !important;
+            background: linear-gradient(to bottom, #ff0066 50%, #ff0066 50%);
+        }
+
+        .btn:hover {
+            background: linear-gradient(to bottom, #66ff33 0%, #66ffff 100%);
+            color: black !important;
+        }
+
+        @media screen and (max-width: 480px) {
+            .box {
+                max-width: 100%;
+            }
+
+            .btn {
+                width: calc(33.333% - 5px);
+            }
+
+            .btn-2 {
+                width: calc(66.666% - 5px);
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="calculator">
+    <div class="box">
+        <form class="count" action="index.html" method="post">
+            <input type="text" name="display" id="display" value="" class="output">
+            <div class="btn-glry">
+                <input type="button" value="C" class="btn btn-2" onclick="clearDisplay()">
+                <input type="button" value="÷" class="btn" onclick="appendValue('/')">
+                <input type="button" value="×" class="btn" onclick="appendValue('*')">
+                <input type="button" value="1" class="btn" onclick="appendValue('1')">
+                <input type="button" value="2" class="btn" onclick="appendValue('2')">
+                <input type="button" value="3" class="btn" onclick="appendValue('3')">
+                <input type="button" value="-" class="btn" onclick="appendValue('-')">
+                <input type="button" value="4" class="btn" onclick="appendValue('4')">
+                <input type="button" value="5" class="btn" onclick="appendValue('5')">
+                <input type="button" value="6" class="btn" onclick="appendValue('6')">
+                <input type="button" value="+" class="btn" onclick="appendValue('+')">
+                <input type="button" value="7" class="btn" onclick="appendValue('7')">
+                <input type="button" value="8" class="btn" onclick="appendValue('8')">
+                <input type="button" value="9" class="btn" onclick="appendValue('9')">
+                <input type="button" value="=" class="btn" onclick="calculate()">
+                <input type="button" value="0" class="btn" onclick="appendValue('0')">
+                <input type="button" value="00" class="btn" onclick="appendValue('00')">
+                <input type="button" value="." class="btn" onclick="appendValue('.')">
+                <input type="button" value="Del" class="btn btn-d" onclick="deleteLast()">
+            </div>
+        </form>
+        <div class="copy"></div>
+    </div>
+</div>
+
+<script>
+    const display = document.getElementById('display');
+
+    function clearDisplay() {
+        display.value = '';
+    }
+
+    function appendValue(value) {
+        display.value += value;
+    }
+
+    function deleteLast() {
+        display.value = display.value.slice(0, -1);
+    }
+
+    function calculate() {
+        try {
+            display.value = eval(display.value);
+        } catch (e) {
+            display.value = 'Error';
+        }
+    }
+</script>
+
+</body>
+</html>
